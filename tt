@@ -1,0 +1,43 @@
+import java.io.*;
+import java.time.*;
+class MyCode {
+  static int a = 2;
+  static volatile int b = 3;
+
+	public static void main (String[] args) {
+
+		var t1 = new Thread(){
+      void run(){
+        a = 4;
+        b = 7;
+      }
+    };
+		var t2 = new Thread(){
+      void run(){
+        int c = b;
+        int k = a;
+        System.out.println("c=" + c + " k="+ k);
+      }
+
+    };
+
+    t1.start();
+    t2.start();
+
+    /**
+    3,
+    7,
+    2,
+    4
+
+    3,2 if t1 not run
+
+    3,4
+
+    7,2
+    7,4
+    **/
+
+
+	}
+}

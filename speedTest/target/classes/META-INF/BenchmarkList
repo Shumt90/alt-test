@@ -1,0 +1,2 @@
+JMH S 20 org.example.NoRepeat S 47 org.example.jmh_generated.NoRepeat_test_jmhTest S 4 test S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 42 org.example.SortByCategoryWithEquidistance S 69 org.example.jmh_generated.SortByCategoryWithEquidistance_test_jmhTest S 4 test S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
