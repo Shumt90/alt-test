@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,69 +6,66 @@ public class Solution {
 
   public boolean isMatch(String value, String regexp) {
 
-    System.out.println("===========" + value + " === " + regexp);
+    if (value.equals("") && regexp.equals("")) {
+      return true;
+    }
+
+    if (regexp.equals("")) {
+      return false;
+    }
+
+    //System.out.println("===========" + value + " === " + regexp);
 
     var tokens = divide(regexp);
 
     Allocations[] allocations = new Allocations[tokens.size()];
 
-    int i = 0;
+    int i = -1;
     for (var token : tokens) {
       var allocation = new Allocations(token);
       allocation.combinations = getCombinations(value, token);
-      if (!token.wild && allocation.combinations.isEmpty()) {
+      if (allocation.combinations.isEmpty()) {
         return false;
-      }
-      allocations[i] = allocation;
-      i++;
-    }
-
-    System.out.println(Arrays.toString(allocations));
-
-    return haveWay(allocations, 0, value.length());
-
-  }
-
-  boolean haveWay(Allocations[] allocations, int offset, int end) {
-
-    if (offset == allocations.length - 1) {
-      return areEnd(allocations, offset, end);
-    } else {
-      for (var allocation : allocations[offset].combinations) {
-
-        if (allocations[offset + 1].token.wild && allocations[offset + 1].combinations.isEmpty()) {
-          return haveWay(allocations, offset + 1, end);
-        } else {
-          for (var allocation2 : allocations[offset + 1].combinations) {
-            if (allocation.to - allocation2.from==1 && haveWay(allocations, offset + 1, end)) {
-              return true;
-            }
-          }
-        }
+      } else {
+        allocations[++i] = allocation;
       }
     }
 
-    return false;
-  }
+    //System.out.println(Arrays.toString(allocations));
 
-  boolean areEnd(Allocations[] allocations, int offset, int end) {
-
-    if (allocations[offset].token.wild) {
-      if (offset == 0) {
-        return false;
-      }
-      return areEnd(allocations, offset - 1, end);
+    if (i == -1) {
+      return false;
     }
 
-    for (var allocation : allocations[offset].combinations) {
-      if (allocation.to == end) {
+    for (var allocation : allocations[0].combinations) {
+      if (allocation.from != 0) {
+        continue;
+      }
+
+      if (haveWay(allocations, 1, value.length(), allocation)) {
         return true;
       }
     }
 
     return false;
+
   }
 
+  boolean haveWay(Allocations[] allocations, int offsetNext, int end, Allocation allocation) {
+
+    if (offsetNext == allocations.length) {
+      return allocation.to == end;
+    }
+
+    for (var allocationNext : allocations[offsetNext].combinations) {
+      if (allocation.to == allocationNext.from && haveWay(allocations, offsetNext + 1, end, allocationNext)) {
+        return true;
+      }
+
+    }
+
+    return false;
+  }
 
   List<Allocation> getCombinations(String value, Token token) {
 
@@ -82,28 +78,36 @@ public class Solution {
       for (int offset = 0; offset <= maxOffset; offset++) {
 
         if (equalsIgnoreDot(value.substring(offset + token.prevCost, offset + token.prevCost + token.value.length()), token.value)) {
-          allocations.add(new Allocation(offset + token.prevCost, token.value.length() + token.prevCost));
+          int cur = offset + token.prevCost;
+          allocations.add(new Allocation(cur, token.value.length() + cur));
         }
 
       }
     } else {
-      int maxOffset = value.length() - token.nextCost - token.prevCost;
-      for (int i = 0; i < maxOffset; i++) {
 
-        boolean match = true;
-        for (int i2 = i; i2 < maxOffset; i2++) {
-          if (!equalsIgnoreDot(token.value.charAt(0), value.charAt(token.prevCost + i2))) {
-            match = false;
-            break;
+      //maxWordSize - light of word for patternMatch
+      //wordOffset - offset of word
+      //wordInx - character index for compare
+
+      int maxWordSize = value.length() - token.nextCost - token.prevCost;
+      for (int curWordSize = 1; curWordSize <= maxWordSize; curWordSize++) {
+        two:
+        for (int wordOffset = 0; wordOffset <= maxWordSize - curWordSize; wordOffset++) {
+          for (int wordInx = 0; wordInx < curWordSize; wordInx++) {
+
+            if (!equalsIgnoreDot(token.value.charAt(0), value.charAt(token.prevCost + wordOffset + wordInx))) {
+              continue two;
+            }
+
           }
-        }
 
-        if (match) {
-          allocations.add(new Allocation(token.prevCost + i, token.prevCost + maxOffset));
-        }
+          allocations.add(new Allocation(token.prevCost + wordOffset, token.prevCost + wordOffset + curWordSize));
 
+        }
+        allocations.add(new Allocation(token.prevCost + curWordSize, token.prevCost + curWordSize));
       }
-
+      allocations.add(new Allocation(maxWordSize, maxWordSize));
+      allocations.add(new Allocation(token.prevCost, token.prevCost));
     }
 
     return allocations;
