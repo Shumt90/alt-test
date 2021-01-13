@@ -3,6 +3,6 @@ dontinline,*.*_avgt_jmhStub
 dontinline,*.*_sample_jmhStub
 dontinline,*.*_ss_jmhStub
 dontinline,*.*_thrpt_jmhStub
-inline,org/example/NoRepeat.test
-inline,org/example/SortByCategoryWithEquidistance.test
-inline,org/example/sergey/SolutionSergey.test
+inline,org/example/StringArrayOptimization.finchJsonSimple
+inline,org/example/StringArrayOptimization.kirill
+inline,org/example/StringArrayOptimization.primitive
