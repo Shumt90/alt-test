@@ -1,6 +1,10 @@
-JMH S 42 org.example.SortByCategoryWithEquidistance S 69 org.example.jmh_generated.SortByCategoryWithEquidistance_test_jmhTest S 4 test S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
-JMH S 35 org.example.StringArrayOptimization S 73 org.example.jmh_generated.StringArrayOptimization_finchJsonSimple_jmhTest S 15 finchJsonSimple S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
 JMH S 33 org.example.sergey.SolutionSergey S 60 org.example.sergey.jmh_generated.SolutionSergey_test_jmhTest S 4 test S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
-JMH S 35 org.example.StringArrayOptimization S 67 org.example.jmh_generated.StringArrayOptimization_primitive_jmhTest S 9 primitive S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
-JMH S 35 org.example.StringArrayOptimization S 64 org.example.jmh_generated.StringArrayOptimization_kirill_jmhTest S 6 kirill S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 18 org.example.PutMap S 58 org.example.jmh_generated.PutMap_kirill_withOneKey_jmhTest S 17 kirill_withOneKey S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 18 org.example.PutMap S 60 org.example.jmh_generated.PutMap_kirill_withManyKeys_jmhTest S 19 kirill_withManyKeys S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
 JMH S 20 org.example.NoRepeat S 47 org.example.jmh_generated.NoRepeat_test_jmhTest S 4 test S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 18 org.example.PutMap S 64 org.example.jmh_generated.PutMap_juggernaults_withOneKey_jmhTest S 23 juggernaults_withOneKey S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 35 org.example.StringArrayOptimization S 67 org.example.jmh_generated.StringArrayOptimization_primitive_jmhTest S 9 primitive S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 42 org.example.SortByCategoryWithEquidistance S 69 org.example.jmh_generated.SortByCategoryWithEquidistance_test_jmhTest S 4 test S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 18 org.example.PutMap S 66 org.example.jmh_generated.PutMap_juggernaults_withManyKeys_jmhTest S 25 juggernaults_withManyKeys S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 35 org.example.StringArrayOptimization S 73 org.example.jmh_generated.StringArrayOptimization_finchJsonSimple_jmhTest S 15 finchJsonSimple S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 35 org.example.StringArrayOptimization S 64 org.example.jmh_generated.StringArrayOptimization_kirill_jmhTest S 6 kirill S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
